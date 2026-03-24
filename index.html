@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talent Track Pakistan (ICST)</title>
+    <link rel="icon" type="image/png" href="./image/talnt_trck5.png">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* --- 1. RESET & BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #00FF00;
+            --primary-blue: #3498db;
+            --accent-green: #2ecc71;
+            --text-light: #d5d8dc;
+            --bg-light: #000000;
+            --bg-main: #ffffff; color: var(--bg-main);
+            --shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* --- 2. LAYOUT --- */
+        .site-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: var(--primary-dark);
+            color: var(--#f0f0f0);
+            display: flex;
+            flex-direction: column;
+            padding: 40px 0;
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .content-area {
+            flex-grow: 1;
+            padding: 30px;
+            background-color: var(--bg-light);
+            width: 100%;
+        }
+
+        /* --- 3. SIDEBAR --- */
+        .menu-label {
+            padding-left: 25px;
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: #85929e;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            flex-grow: 1;
+        }
+
+        .sidebar ul li a {
+            display: block;
+            padding: 15px 25px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            border-left: 4px solid transparent;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .sidebar ul li a:hover, .sidebar ul li a.active {
+            background-color: #2c3e50;
+            color: var(--primary-blue);
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .sidebar-footer {
+            text-align: center;
+            font-size: 11px;
+            color: #566573;
+            padding: 20px;
+            border-top: 1px solid #2c3e50;
+        }
+
+        /* --- 4. HEADER --- */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--#f0f0f0);
+            padding: 20px 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            border-bottom: 4px solid var(--primary-blue);
+        }
+
+        .brand-name {
+            font-size: 28px;
+            font-weight: 800;
+            color: #212f3d;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            background: linear-gradient(to right, #2c3e50, var(--primary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 14px;
+            color: var(--accent-green);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .top-right-logo {
+            height: 65px;
+            width: auto;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+            transition: transform 0.3s;
+        }
+
+        .top-right-logo:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- 5. ANIMATIONS --- */
+        .animation-wrapper {
+            overflow: hidden;
+            margin-bottom: 25px;
+            height: 60px;
+            position: relative;
+            background: rgba(0,0,0,0.05);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .moving-box {
+            width: 250px;
+            padding: 12px;
+            background: #222;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #f0f0f0;
+            border: 4px solid #ff0000;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            position: absolute;
+            animation: moveLeftRight 8s linear infinite, borderRainbow 4s linear infinite;
+        }
+
+        @keyframes moveLeftRight {
+            0%   { left: 0%; transform: translateX(0); }
+            50%  { left: 100%; transform: translateX(-100%); }
+            100% { left: 0%; transform: translateX(0); }
+        }
+
+        @keyframes borderRainbow {
+            0%   { border-color: #ff0000; box-shadow: 0 0 20px #ff0000; }
+            20%  { border-color: #ff8000; box-shadow: 0 0 20px #ff8000; }
+            40%  { border-color: #ffff00; box-shadow: 0 0 20px #ffff00; }
+            60%  { border-color: #00ff00; box-shadow: 0 0 20px #00ff00; }
+            80%  { border-color: #000000; box-shadow: 0 0 20px #000000; }
+            100% { border-color: #ff0000; box-shadow: 0 0 20px #ff0000; }
+        }
+
+        /* --- 6. HOME SECTION --- */
+        .slider-wrapper {
+            width: 100%;
+            max-width: 850px;
+            height: 480px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            background-color: #f0f0f0;
+            border: 5px solid #f0f0f0;
+        }
+
+        .image-slider {
+            display: flex;
+            width: 400%;
+            height: 100%;
+            animation: move-slides 18s infinite ease-in-out;
+        }
+
+        .slide-img {
+            width: 25%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes move-slides {
+            0%, 20% { transform: translateX(0); }
+            25%, 45% { transform: translateX(-25%); }
+            50%, 70% { transform: translateX(-50%); }
+            75%, 95% { transform: translateX(-75%); }
+            100% { transform: translateX(0); }
+        }
+
+        .partners-strip {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin: 40px auto;
+            padding: 25px;
+            background: var(--#f0f0f0);
+            border-radius: 15px;
+            max-width: 1000px;
+            box-shadow: var(--shadow);
+            flex-wrap: wrap;
+        }
+
+        .logo-item img {
+            height: 85px;
+            width: auto;
+            object-fit: contain;
+            transition: all 0.3s ease;
+        }
+
+        .logo-item img:hover {
+            transform: scale(1.15) rotate(2deg);
+        }
+
+        .action-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .apply-btn {
+            background: linear-gradient(135deg, #27ae60, var(--accent-green));
+            color: #f0f0f0;
+            padding: 18px 60px;
+            border: none;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(39, 174, 96, 0.3);
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .apply-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(39, 174, 96, 0.4);
+            filter: brightness(1.1);
+        }
+
+        /* --- 7. COURSES SECTION --- */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .course-card {
+            background: var(--#f0f0f0);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary-blue);
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 15px 40px rgba(52, 152, 219, 0.2);
+        }
+
+        .course-icon {
+            font-size: 45px;
+            color: var(--primary-blue);
+            margin-bottom: 25px;
+        }
+
+        .course-card h3 {
+            font-size: 24px;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+        }
+
+        .course-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            margin: 20px 0;
+            color: #7f8c8d;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .enroll-btn {
+            display: inline-block;
+            background: var(--primary-dark);
+            color: var(--#f0f0f0);
+            padding: 14px 35px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        .enroll-btn:hover {
+            background: var(--primary-blue);
+            color: #f0f0f0;
+        }
+
+        /* --- 8. CONTACT SECTION --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .contact-card {
+            background: var(--#f0f0f0);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-card h3 {
+            margin-bottom: 25px;
+            color: var(--primary-dark);
+            border-bottom: 4px solid var(--accent-green);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .info-box p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .info-box i {
+            color: var(--primary-blue);
+            margin-right: 12px;
+            width: 25px;
+            font-size: 18px;
+        }
+
+        .form-box form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-box input, .form-box textarea {
+            padding: 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            outline: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .form-box input:focus, .form-box textarea:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.1);
+        }
+
+        .submit-btn {
+            background: var(--primary-dark);
+            color: var(--#f0f0f0);
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-blue);
+        }
+
+        .map-wrapper {
+            margin-top: 40px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 5px solid #f0f0f0;
+        }
+
+        iframe {
+            width: 100%;
+            display: block;
+        }
+
+        /* --- 9. ABOUT SECTION --- */
+        .about-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .about-card {
+            background: var(--#f0f0f0);
+            padding: 35px;
+            border-radius: 20px;
+            border-left: 8px solid var(--accent-green);
+            box-shadow: var(--shadow);
+        }
+
+        .about-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+
+        .about-card i {
+            color: var(--primary-blue);
+            font-size: 24px;
+        }
+
+        .about-card p {
+            font-size: 17px;
+            line-height: 1.7;
+            color: #444;
+        }
+
+        .video-section {
+            margin-top: 50px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 28px;
+            color: var(--primary-dark);
+            position: relative;
+            display: block;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: var(--primary-blue);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .video-card {
+            background: var(--#f0f0f0);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: 0.3s;
+        }
+
+        .video-card:hover {
+            transform: scale(1.02);
+        }
+
+        .video-card video {
+            width: 100%;
+            display: block;
+            background: #000;
+        }
+
+        .video-info {
+            padding: 20px;
+            background: var(--#f0f0f0);
+        }
+
+        .video-info h4 {
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+            font-size: 18px;
+        }
+
+        .video-info p {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        /* --- 10. APPLY SECTION --- */
+        .admission-form-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--#f0f0f0);
+            padding: 50px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border-top: 6px solid var(--primary-blue);
+        }
+
+        .admission-form-container h3 {
+            font-size: 26px;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-dark);
+        }
+
+        .input-row {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .input-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #34495e;
+            font-size: 15px;
+        }
+
+        .input-group input, .input-group select, .input-group textarea {
+            padding: 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: 0.3s;
+            background: #f9fbfc;
+        }
+
+        .input-group input:focus, .input-group select:focus, .input-group textarea:focus {
+            border-color: var(--primary-blue);
+            background: var(--#f0f0f0);
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.1);
+        }
+
+        .submit-btn-large {
+            width: 100%;
+            padding: 18px;
+            background: var(--primary-dark);
+            color: var(--#f0f0f0);
+            border: none;
+            border-radius: 12px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn-large:hover {
+            background: var(--primary-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+        }
+
+        /* --- 11. WHATSAPP FLOAT --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 35px;
+            right: 35px;
+            background-color: #25d366;
+            color: #f0f0f0;
+            padding: 15px 30px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
+            z-index: 2000;
+            transition: 0.4s;
+        }
+
+        .whatsapp-icon {
+            width: 30px;
+            height: 30px;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1) translateY(-5px);
+            background-color: #128c7e;
+        }
+
+        /* --- 12. RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                width: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .site-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 15px 0;
+            }
+
+            .sidebar ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 5px;
+            }
+
+            .sidebar ul li a {
+                padding: 10px 12px;
+                font-size: 12px;
+                border-left: none;
+                border-bottom: 3px solid transparent;
+            }
+
+            .sidebar ul li a:hover, .sidebar ul li a.active {
+                border-bottom: 3px solid var(--primary-blue);
+            }
+
+            .main-header {
+                flex-direction: column;
+                text-align: center;
+                padding: 25px;
+            }
+
+            .logo-wrapper {
+                margin-top: 20px;
+                justify-content: center;
+            }
+
+            .slider-wrapper {
+                height: 280px;
+            }
+
+            .about-info-grid, .input-row {
+                grid-template-columns: 1fr;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .whatsapp-float span {
+                display: none;
+            }
+
+            .whatsapp-float {
+                padding: 15px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .content-area {
+                padding: 15px;
+            }
+
+            .brand-name {
+                font-size: 22px;
+            }
+        }
+
+        /* Section Visibility */
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* NEW CSS - Sidebar Background Blue */
+.sidebar {
+    background-color: blue !important; /* Blue color */
+}
+
+    </style>
+</head>
+<body>
+
+<div class="site-container">
+    <!-- SIDEBAR -->
+    <nav class="sidebar">
+        <div class="menu-label">DASHBOARD</div>
+        <ul>
+            <li><a onclick="showSection('home')" id="nav-home" class="active"><i class="fas fa-home"></i> HOME</a></li>
+            <li><a onclick="showSection('courses')" id="nav-courses"><i class="fas fa-book"></i> COURSES OFFER</a></li>
+            <li><a onclick="showSection('contact')" id="nav-contact"><i class="fas fa-info-circle"></i> CONTACT INFO</a></li>
+            <li><a onclick="showSection('about')" id="nav-about"><i class="fas fa-user-friends"></i> ABOUT US</a></li>
+            <li><a onclick="showSection('apply')" id="nav-apply"><i class="fas fa-edit"></i> APPLY NOW</a></li>
+        </ul>
+        <div class="sidebar-footer">© 2026 ICST - Talent Track Pakistan</div>
+    </nav>
+
+    <main class="content-area">
+        <!-- SHARED HEADER -->
+        <header class="main-header">
+            <div class="title-wrapper">
+                <h1 class="brand-name" id="section-title">TALENT TRACK PAKISTAN</h1>
+                <p class="tagline" id="section-tagline">INSTITUTE OF COMPUTER SCIENCE AND TECHNOLOGY (ICST)</p>
+            </div>
+            <div class="logo-wrapper" id="header-logos">
+                <img src="./image/talnt_trck5.png" alt="Academy Logo" class="top-right-logo">
+            </div>
+        </header>
+
+        <!-- HOME SECTION -->
+        <section id="home" class="page-section active">
+            <div class="animation-wrapper">
+                <div class="moving-box">
+                    Developer: <span>MR-SHEHRIYAR</span>
+                </div>
+            </div>
+            
+            <div class="slider-wrapper">
+                <div class="image-slider">
+                    <img src="./image/tlent track 1.jpg" class="slide-img" onerror="this.src='https://via.placeholder.com/850x480?text=Slider+Image+1'">
+                    <img src="./image/TALENT TRACK PAKISTAN ART BY SHEHRIYAR2.jpg" class="slide-img" onerror="this.src='https://via.placeholder.com/850x480?text=Slider+Image+2'">
+                    <img src="./image/pic4.jpeg" class="slide-img" onerror="this.src='https://via.placeholder.com/850x480?text=Slider+Image+3'">
+                    <img src="./image/TALENT TRACK PAKISTAN ART BY SHEHRIYAR2.jpg" class="slide-img" onerror="this.src='https://via.placeholder.com/850x480?text=Slider+Image+4'">
+                </div>
+            </div>
+
+            <div class="partners-strip">
+                <div class="logo-item"><img src="./image/sindh3.png" alt="Sindh Govt" onerror="this.style.display='none'"></div>
+                <div class="logo-item"><img src="./image/govt2.png" alt="Govt Logo" onerror="this.style.display='none'"></div>
+                <div class="logo-item"><img src="./image/bbshrrdb1.png" alt="BBSHRRDB" onerror="this.style.display='none'"></div>
+                <div class="logo-item"><img src="./image/t4.png" alt="Partner" onerror="this.style.display='none'"></div>
+                <div class="logo-item"><img src="./image/talnt_trck5.png" alt="ICST" onerror="this.style.display='none'"></div>
+            </div>
+
+            <div class="action-section">
+                <button class="apply-btn" onclick="showSection('apply')">Apply For Courses Now</button>
+            </div>
+        </section>
+
+        <!-- COURSES SECTION -->
+        <section id="courses" class="page-section">
+            <div class="course-grid">
+                <!-- Web Development -->
+                <div class="course-card">
+                    <div class="course-icon"><i class="fas fa-laptop-code"></i></div>
+                    <h3>Web Development</h3>
+                    <p>Complete Frontend & Backend technologies including HTML5, CSS3, JS & PHP. Build professional websites from scratch.</p>
+                    <div class="course-meta">
+                        <span><i class="far fa-clock"></i> 6 Months</span>
+                        <span><i class="fas fa-check-circle"></i> Certified</span>
+                    </div>
+                    <a href="https://wa.me/923258389705" class="enroll-btn">Join Now</a>
+                </div>
+
+                <!-- Graphic Design -->
+                <div class="course-card">
+                    <div class="course-icon"><i class="fas fa-bezier-curve"></i></div>
+                    <h3>Graphic Design</h3>
+                    <p>Master Adobe Photoshop, Illustrator & Canva. Learn professional branding, logo design, and visual storytelling.</p>
+                    <div class="course-meta">
+                        <span><i class="far fa-clock"></i> 3 Months</span>
+                        <span><i class="fas fa-check-circle"></i> Certified</span>
+                    </div>
+                    <a href="https://wa.me/923258389705" class="enroll-btn">Join Now</a>
+                </div>
+
+                <!-- Digital Marketing -->
+                <div class="course-card">
+                    <div class="course-icon"><i class="fas fa-ad"></i></div>
+                    <h3>Digital Marketing</h3>
+                    <p>Learn Meta Ads, Google Ads, and Social Media Management (SMM). Grow businesses using digital strategies.</p>
+                    <div class="course-meta">
+                        <span><i class="far fa-clock"></i> 3 Months</span>
+                        <span><i class="fas fa-check-circle"></i> Certified</span>
+                    </div>
+                    <a href="https://wa.me/923258389705" class="enroll-btn">Join Now</a>
+                </div>
+
+                <!-- CIT & MS Office -->
+                <div class="course-card">
+                    <div class="course-icon"><i class="fas fa-file-excel"></i></div>
+                    <h3>CIT & MS Office</h3>
+                    <p>Basic computing, MS Word 2007, Excel formulas, PowerPoint, and Windows installation. Essential for every office job.</p>
+                    <div class="course-meta">
+                        <span><i class="far fa-clock"></i> 2 Months</span>
+                        <span><i class="fas fa-check-circle"></i> Certified</span>
+                    </div>
+                    <a href="https://wa.me/923258389705" class="enroll-btn">Join Now</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="page-section">
+            <div class="contact-grid">
+                <div class="contact-card info-box">
+                    <h3>Our Office</h3>
+                    <p><strong><i class="fas fa-map-marker-alt"></i> Address:</strong><br>
+                    Sikanderabad Christian Colony, Site Area, Kotri, Sindh, Pakistan</p>
+                    
+                    <p><strong><i class="fas fa-phone"></i> Phone:</strong><br>
+                    03201011954 | 03203966489</p>
+                    
+                    <p><strong><i class="fas fa-envelope"></i> Email:</strong><br>
+                    info@talenttrack.pk</p>
+                </div>
+
+                <div class="contact-card form-box">
+                    <h3>Send us a Message</h3>
+                    <form onsubmit="event.preventDefault(); alert('Shukriya! Aapka message bhej diya gaya hai.');">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <textarea placeholder="How can we help you?" rows="5" required></textarea>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="map-wrapper">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d901.2941890270969!2d68.27687936953824!3d25.3653918986002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjXCsDIxJzU1LjQiTiA2OMKwMTYnMzkuMSJF!5e0!3m2!1sen!2s!4v1773652039886!5m2!1sen!2s" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="page-section">
+            <div class="about-info-grid">
+                <div class="about-card">
+                    <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+                    <p>Sindh ke naujawanon ko modern technical skills sikhana aur unhe digital dunya mein kamyab banana hamara maqsad hai. Hum chahte hain ke har bacha technology ke zariye apna mustaqbil sanwar sake.</p>
+                </div>
+                <div class="about-card">
+                    <h3><i class="fas fa-eye"></i> Our Vision</h3>
+                    <p>Talent Track Pakistan aur Sindh ka behtareen IT institute banana jahan har bacha computer seekh sakay aur digital revolution ka hissa ban sake.</p>
+                </div>
+            </div>
+            <div class="video-section">
+                <h2 class="section-title">Academy Events & Highlights</h2>
+                <div class="video-grid">
+                    <!-- Video 1 -->
+                    <div class="video-card">
+                        <video controls poster="./image/talnt_trck5.png">
+                            <source src="./VIDEO/VIDEO 1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-info">
+                            <h4>Inauguration Ceremony</h4>
+                            <p>1st April 2026 Event - Grand Opening</p>
+                        </div>
+                    </div>
+
+                    <!-- Video 2 -->
+                    <div class="video-card">
+                        <video controls>
+                            <source src="videos/event2.mp4" type="video/mp4">
+                            <source src="./VIDEO/VIDEO 1.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-info">
+                            <h4>Web Development Workshop</h4>
+                            <p>Student Learning & Practical Session</p>
+                        </div>
+                    </div>
+
+                    <!-- Video 3 -->
+                    <div class="video-card">
+                        <video controls>
+                            <source src="./VIDEO/VIDEO 1.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-info">
+                            <h4>Graphic Design Class</h4>
+                            <p>Practical Training & Creative Work</p>
+                        </div>
+                    </div>
+
+                    <!-- Video 4 -->
+                    <div class="video-card">
+                        <video controls>
+                            <source src="./VIDEO/VIDEO 1.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-info">
+                            <h4>Student Projects</h4>
+                            <p>Digital Marketing Lab Highlights</p>
+                        </div>
+                    </div>
+
+                    <!-- Video 5 -->
+                    <div class="video-card">
+                        <video controls>
+                            <source src="./VIDEO/VIDEO 1.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-info">
+                            <h4>Certificate Distribution</h4>
+                            <p>Celebrating Success Stories</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- APPLY SECTION -->
+        <section id="apply" class="page-section">
+            <div class="admission-form-container">
+                <form class="enroll-form" onsubmit="event.preventDefault(); alert('Application Submit Ho Gayi Hai! Hum Jald Aap Se Rabta Karenge.');">
+                    <h3><i class="fas fa-user-edit"></i> Student Registration Form</h3>
+                    
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="Apna Poora Naam Likhein" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Father's Name</label>
+                            <input type="text" placeholder="Walid Ka Naam Likhein" required>
+                        </div>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>WhatsApp Number</label>
+                            <input type="tel" placeholder="03xx-xxxxxxx" required>
+                        </div>
+                        <div class="input-group">
+                            <label>CNIC / B-Form</label>
+                            <input type="text" placeholder="xxxxx-xxxxxxx-x" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group" style="margin-bottom: 25px;">
+                        <label>Select Course</label>
+                        <select required>
+                            <option value="">-- Choose a Course --</option>
+                            <option value="web">Web Development (6 Months)</option>
+                            <option value="graphic">Graphic Design (3 Months)</option>
+                            <option value="marketing">Digital Marketing (3 Months)</option>
+                            <option value="office">MS Office & CIT</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Your Home Address</label>
+                        <textarea rows="4" placeholder="Sikanderabad, Kotri, Jamshoro, etc." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn-large">Submit Application</button>
+                </form>
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/923258389705?text=Salam,%20TALENT%20TRACK%20Academy%20ke%20courses%20ki%20details%20chahiye." class="whatsapp-float" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
+    <span>Chat with us on WhatsApp</span>
+</a>
+
+<script>
+    function showSection(sectionId) {
+        // 1. Hide all sections
+        const sections = document.querySelectorAll('.page-section');
+        sections.forEach(section => {
+            section.classList.remove('active');
+        });
+
+        // 2. Show the selected section
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) {
+            targetSection.classList.add('active');
+        }
+
+        // 3. Update Sidebar Nav active state
+        const navLinks = document.querySelectorAll('.sidebar ul li a');
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+        });
+        const activeNav = document.getElementById('nav-' + sectionId);
+        if (activeNav) {
+            activeNav.classList.add('active');
+        }
+
+        // 4. Update Header Content based on section
+        const mainTitle = document.getElementById('section-title');
+        const tagline = document.getElementById('section-tagline');
+        const headerLogos = document.getElementById('header-logos');
+
+        // Clear extra logos if any (from contact page)
+        headerLogos.innerHTML = '<img src="./image/talnt_trck5.png" alt="Academy Logo" class="top-right-logo">';
+
+        switch(sectionId) {
+            case 'home':
+                mainTitle.innerText = "TALENT TRACK PAKISTAN";
+                tagline.innerText = "INSTITUTE OF COMPUTER SCIENCE AND TECHNOLOGY (ICST)";
+                break;
+            case 'courses':
+                mainTitle.innerText = "OUR COURSES";
+                tagline.innerText = "Skill Up with Muntaha Academy";
+                break;
+            case 'contact':
+                mainTitle.innerText = "CONTACT INFORMATION";
+                tagline.innerText = "Talent Track Pakistan";
+                // Add extra logos for contact page as in original
+                headerLogos.innerHTML += `
+                    <img src="./image/govt2.png" alt="Logo" class="top-right-logo">
+                    <img src="./image/sindh3.png" alt="Logo" class="top-right-logo">
+                    <img src="./image/t4.png" alt="Logo" class="top-right-logo">
+                `;
+                break;
+            case 'about':
+                mainTitle.innerText = "ABOUT OUR ACADEMY";
+                tagline.innerText = "Empowering Youth through Technology";
+                break;
+            case 'apply':
+                mainTitle.innerText = "ONLINE ADMISSION";
+                tagline.innerText = "Start Your Journey with Muntaha Academy";
+                break;
+        }
+
+        // 5. Scroll to top on mobile for better UX
+        if (window.innerWidth <= 768) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }
+</script>
+
+</body>
+</html>
